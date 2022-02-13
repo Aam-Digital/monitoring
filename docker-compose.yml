@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.33.3
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    networks:
+      - nginx-proxy-default
+    environment:
+      VIRTUAL_HOST: example.com
+      LETSENCRYPT_HOST: example.com
+      LETSENCRYPT_EMAIL: webmaster@example.com
+    restart: unless-stopped
+
+networks:
+  grafana:
+  nginx-proxy-default:
+    external: true
