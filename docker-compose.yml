@@ -9,7 +9,7 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
     networks:
-      - nginx-proxy-default
+      - nginx-proxy_default
     environment:
       VIRTUAL_HOST: example.com
       LETSENCRYPT_HOST: example.com
@@ -17,5 +17,5 @@ services:
     restart: unless-stopped
 
 networks:
-  nginx-proxy-default:
+  nginx-proxy_default:
     external: true
