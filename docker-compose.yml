@@ -5,9 +5,9 @@ services:
     image: prom/prometheus:v2.33.3
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/data
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--storage.tsdb.path=/prometheus"
     networks:
       - nginx-proxy_default
       - internal
