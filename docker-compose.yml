@@ -36,7 +36,11 @@ services:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
-      - /var/lib/docker/var/lib/docker:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    command:
+      - "--housekeeping_interval=30s"
+      - "--docker_only=true"
+      - "--disable_metrics=percpu,sched,tcp,udp,disk,diskIO,accelerator,hugetlb,referenced_memory,cpu_topology,resctrl"
 
 networks:
   internal:
