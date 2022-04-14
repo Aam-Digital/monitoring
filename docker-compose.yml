@@ -16,9 +16,11 @@ services:
       LETSENCRYPT_HOST: example.com
       LETSENCRYPT_EMAIL: webmaster@example.com
     restart: unless-stopped
+    depends_on:
+      - cadvisor
 
   cadvisor:
-    image: google/cadvisor:v0.33.0
+    image: gcr.io/cadvisor/cadvisor:v0.39.3
     networks:
       - internal
     volumes:
@@ -30,6 +32,7 @@ services:
       - "--housekeeping_interval=30s"
       - "--docker_only=true"
       - "--disable_metrics=percpu,sched,tcp,udp,disk,diskIO,accelerator,hugetlb,referenced_memory,cpu_topology,resctrl"
+    restart: unless-stopped
 
 networks:
   internal:
