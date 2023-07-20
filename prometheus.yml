@@ -12,3 +12,8 @@ scrape_configs:
   - job_name: node_exporter
     static_configs:
       - targets: ['node_exporter:9100']
+  - job_name: keycloak
+    scheme: https
+    static_configs:
+      - targets: ['localhost:8080']     # Keycloak URL (see https://github.com/aerogear/keycloak-metrics-spi)
+    metrics_path: /realms/master/metrics
